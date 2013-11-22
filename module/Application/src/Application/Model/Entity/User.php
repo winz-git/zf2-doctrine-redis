@@ -10,13 +10,17 @@
 namespace Application\Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\EntityRepository;
+
 
 /**
  * Class User
- * @ORM\Entity
+ *
+ * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="Application\Model\Entity\Repository\UserRepository")
  * @package Application\Model\Entity
  */
-class User {
+class User  {
 
     /**
      * @ORM\Id
@@ -37,7 +41,7 @@ class User {
     protected $password;
 
     /**
-     * @ORM\Column(type="datetime", nullable=false, columnDefinition="NOT NULL DEFAULT current_timestamp")
+     * @ORM\Column(type="datetime", nullable=false, columnDefinition="datetime")
      */
     protected $createDate;
     /**
@@ -46,13 +50,25 @@ class User {
     protected $last_login;
 
     /**
-     * @ORM\Column(type="boolean", columnDefinition="DEFAULT 0")
+     * @ORM\Column(type="boolean", columnDefinition="boolean default false")
      */
     protected $is_deleted;
 
     /**
-     * @ORM\Column(type="boolean", columnDefinition="DEFAULT 0")
+     * @ORM\Column(type="boolean", columnDefinition="boolean default false")
      */
     protected $is_disabled;
+
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getUserName(){
+        return $this->user_name;
+    }
 
 }

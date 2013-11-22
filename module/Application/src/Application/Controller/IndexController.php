@@ -9,12 +9,16 @@
 
 namespace Application\Controller;
 
+use Zend\Paginator\Adapter\Iterator;
 use Zend\View\Model\ViewModel;
+
 use Application\Controller\BaseController;
 
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use Zend\Paginator\Paginator;
+
+use Application\Model\Entity\ErrorCodes;
 
 class IndexController extends BaseController
 {
@@ -22,11 +26,16 @@ class IndexController extends BaseController
 
     public function indexAction()
     {
+        $page = $this->params('id');
+        $app_config = json_decode(json_encode($this->getServiceLocator()->get('config')));
+        //var_dump($app_config->app_settings);
+        $max = $app_config->app_settings->navigation->records_per_page;
+
 
         //-approach 1, WORKING
-        $repository = $this->getEntityManager()->getRepository('\Application\Model\Entity\ErrorCodes');
+        //$repository = $this->getEntityManager()->getRepository('\Application\Model\Entity\ErrorCodes');
         //$result = $repository->createQueryBuilder('a')->getQuery()->getResult();
-        $qry = $repository->createQueryBuilder('a')->getQuery();
+        //$qry = $repository->createQueryBuilder('a')->getQuery();
 
         //-approach 2, WORKING
 //        $qry = $this->getEntityManager()->createQueryBuilder()
@@ -38,9 +47,12 @@ class IndexController extends BaseController
 
         //$result = $qry->getResult();
 
+        //-approach 3,
+
+
         // how to cache the result
-        $qry->useResultCache(true, 3600, 'error_codes');
-        $result = $qry->getResult();
+        //$qry->useResultCache(true, 3600, 'error_codes');
+        //$result = $qry->getResult();
 
 
 
@@ -50,17 +62,31 @@ class IndexController extends BaseController
 
         //using paginator
         // Create the paginator itself
-        $paginator = new Paginator(
-            new DoctrinePaginator(new ORMPaginator($qry))
-        );
+//        $paginator = new Paginator(
+//            new DoctrinePaginator(new ORMPaginator($qry))
+//        );
+//
+//        $paginator
+//            ->setCurrentPageNumber(1)
+//            ->setItemCountPerPage(5);
 
-        $paginator
-            ->setCurrentPageNumber(1)
-            ->setItemCountPerPage(5);
+        $view = new ViewModel();
+
+        //-other way of using paginator
+        //$results = $this->getEntityManager()->getRepository('Application\Model\Entity\ErrorCodes')->getPaginator(($page - 1) * 20, $max);
+        $paginator = $this->getEntityManager()->getRepository('Application\Model\Entity\ErrorCodes')->getPaginator(($page - 1) * $max, $max);
+
+        $paginator->setCurrentPageNumber($page);
+       // $paginator->setItemCountPerPage(3); //default 10
+        $paginator->setPageRange($app_config->app_settings->navigation->page_in_range);
 
 
+        $view->setVariable('paginator', $paginator);
+        $view->setVariable('page', $page);
+        $view->setVariable('scrolling_style', $app_config->app_settings->navigation->scrolling_style);
 
-        return new ViewModel(array('result' => $result, 'paginator'=>$paginator));
+        return $view;
     }
+
 
 }

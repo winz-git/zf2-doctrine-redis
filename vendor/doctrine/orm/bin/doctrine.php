@@ -24,9 +24,11 @@ use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
 $directories = array(getcwd(), getcwd() . DIRECTORY_SEPARATOR . 'config');
 
-$configFile = null;
+$configFile = getcwd() . DIRECTORY_SEPARATOR . 'config/doctrine/cli-config.php';
+
 foreach ($directories as $directory) {
-    $configFile = $directory . DIRECTORY_SEPARATOR . 'cli-config.php';
+    $configFile = getcwd() . DIRECTORY_SEPARATOR . 'config/doctrine/cli-config.php';
+
 
     if (file_exists($configFile)) {
         break;

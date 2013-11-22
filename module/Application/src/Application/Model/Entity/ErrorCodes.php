@@ -3,12 +3,13 @@
 namespace Application\Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * ErrorCodes
  *
  * @ORM\Table(name="ErrorCodes")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Model\Entity\Repository\ErrorCodesRepository")
  */
 class ErrorCodes
 {
@@ -18,6 +19,7 @@ class ErrorCodes
      * @ORM\Column(name="error_code_id", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+      *
      */
     private $error_code_id;
 
@@ -60,7 +62,6 @@ class ErrorCodes
 
     /**
      * @return string
-     * @ORM\Column(name="error_code", type="string")
      */
     public function getErrorCode()
     {

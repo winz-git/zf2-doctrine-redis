@@ -20,13 +20,18 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
+        $serviceManager      = $e->getApplication()->getServiceManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
 
-        $em = $e->getApplication()->getServiceManager()->get('Doctrine\ORM\EntityManager');
+        $em = $serviceManager->get('Doctrine\ORM\EntityManager');
         $platform = $em->getConnection()->getDatabasePlatform();
 
+        //Mapping
         $platform->registerDoctrineTypeMapping('enum', 'string');
+        $platform->registerDoctrineTypeMapping('set', 'string');
+        $platform->registerDoctrineTypeMapping('varbinary', 'string');
+        $platform->registerDoctrineTypeMapping('tinyblob', 'text');
 
         //
         date_default_timezone_set('Asia/Hong_Kong');
@@ -52,7 +57,7 @@ class Module
     {
         return array(
             'invokables' => array(
-                'Login' => 'Application\Form\Login',
+                'LoginForm' => 'Application\Form\LoginForm',
             ),
             'initializers' => array(
                 'ObjectManagerInitializer' => function ($element, $formElements) {

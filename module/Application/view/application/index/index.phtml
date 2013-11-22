@@ -1,30 +1,6 @@
 
 <div class="row">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Description</th>
-                <th>Explanation</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach($this->result as $key=>$data): ?>
-            <tr>
-                <td><?php echo $data->getErrorCodeId(); ?></td>
-                <td><?php echo $data->getErrorCode(); ?></td>
-                <td><?php echo $data->getDescription(); ?></td>
-                <td><?php echo $data->getExplanation(); ?></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-
-
-<div class="row">
-    <h2>Using Paginator</h2>
+    <h2>Using Paginator - <?php echo $this->page; ?></h2>
     <table class="table table-responsive table-bordered">
         <thead>
         <tr>
@@ -45,6 +21,22 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+    <!-- paginator -->
+        <?php
+        echo $this->paginationControl(
+                // the paginator object
+                $this->paginator,
+                // the scrolling style; see http://zf2.readthedocs.org/en/release-2.1.4/modules/zend.paginator.usage.html#rendering-pages-with-view-scripts
+                'elastic',
+                // the partial to use to render the control
+               '/partial/paginator',
+                // the route to link to when a user clicks a control link
+                array(
+                'route' => 'home'
+                )
+        );
+        ?>
+        <!--//END paginator -->
 </div>
 
 <div class="row">

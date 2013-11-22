@@ -12,6 +12,13 @@
  */
 
 return array(
+    'app_settings' => array(
+        'navigation' => array(
+            'records_per_page' => 5,
+            'page_in_range' => 4,
+            'scrolling_style' => 'elastic'
+        )
+    ),
     'db' => array(
         'driver'         => 'Pdo',
         'dsn'            => 'mysql:dbname=local_mdh;host=localhost',

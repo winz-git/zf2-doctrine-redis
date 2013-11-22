@@ -13,14 +13,20 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/',
+                    'route'    => '[[/page][/:id]]',
+                    'constraints' => array(
+                        'page' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*',
+                    ),
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
                         'action'     => 'index',
+                        'id' => 1,
                     ),
                 ),
+
             ),
             // login route
             'login' => array(
