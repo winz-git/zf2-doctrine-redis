@@ -19,6 +19,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use Zend\Paginator\Paginator;
 
 use Application\Model\Entity\ErrorCodes;
+use Application\Model\Document\User;
 
 class IndexController extends BaseController
 {
@@ -69,6 +70,32 @@ class IndexController extends BaseController
 //        $paginator
 //            ->setCurrentPageNumber(1)
 //            ->setItemCountPerPage(5);
+
+        //for documentmanager
+        //$dm = $this->getDocumentManager();
+        //$user = new User();
+        //$user->setName("Test2");
+        //$dm->persist($user);
+        //$dm->flush();
+
+        //locate
+        //$cursor = $this->getDocumentManager()->getRepository('Application\Model\Document\User')->findAllUsers(100);
+        // --working
+        $users = $this->getDocumentManager()->getRepository('Application\Model\Document\User')->findAllUsers(5);
+
+
+        foreach($users as $user){
+            if($user instanceof \Application\Model\Document\User){
+                echo 'has child '. $user->getName() . "\r\n";
+            }else{
+                echo 'Unexpected child '.get_class($user)."\n";
+            }
+        }
+//        $results = array();
+//        while($result = $cursor->getNext()){
+//            var_dump($result);
+//        }
+
 
         $view = new ViewModel();
 

@@ -10,12 +10,30 @@
 namespace Application\Controller;
 
 
+
+
 use Zend\Mvc\Controller\AbstractActionController;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 abstract class BaseController extends AbstractActionController {
 
     protected $entityManager;
+
+    protected $documentManager;
+
+
+    public function setDocumentManager(DocumentManager $dm) {
+        $this->documentManager = $dm;
+        return $this;
+    }
+
+    public function getDocumentManager() {
+        if (null === $this->documentManager) {
+            $this->setDocumentManager($this->getServiceLocator()->get('doctrine.documentmanager.odm_default'));
+        }
+        return $this->documentManager;
+    }
 
 
     public function setEntityManager(EntityManager $em) {
@@ -25,7 +43,7 @@ abstract class BaseController extends AbstractActionController {
 
     public function getEntityManager() {
         if (null === $this->entityManager) {
-            $this->setEntityManager($this->getServiceLocator()->get('Doctrine\ORM\EntityManager'));//Doctrine\ORM\EntityManager
+            $this->setEntityManager($this->getServiceLocator()->get('doctrine.entitymanager.orm_default'));//Doctrine\ORM\EntityManager
         }
         return $this->entityManager;
     }

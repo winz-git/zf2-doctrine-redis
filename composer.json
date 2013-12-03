@@ -10,10 +10,12 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.2.*",
-	"doctrine/orm":"2.4.*",
-	"doctrine/dbal": "2.4.*",
+	    "doctrine/orm":"2.4.*",
+	    "doctrine/dbal": "2.4.*",
         "doctrine/common": "2.4.*",
         "doctrine/doctrine-orm-module": "0.7.*",
+        "doctrine/mongodb-odm": "dev-master",
+        "doctrine/doctrine-mongo-odm-module": "dev-master",
         "zendframework/zend-developer-tools": "dev-master"
     }
 }

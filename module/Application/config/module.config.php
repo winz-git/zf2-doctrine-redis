@@ -187,7 +187,7 @@ return array(
         ),
 
         'eventmanager' => array(
-            'orm_default' => array()
+            'orm_default' => array(),
         ),
 
         'entity_resolver' => array(
