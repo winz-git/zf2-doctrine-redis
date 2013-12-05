@@ -23,11 +23,13 @@ class AuthController extends BaseController {
 
     public function indexAction(){
 
-        $users = $this->getEntityManager()->getRepository('Application\Model\Entity\User')->getUsers();
+        //$users = $this->getEntityManager()->getRepository('Application\Model\Entity\User')->getUsers();
 
         $form = new LoginForm();
-        $mode = "test";
 
+       // var_dump($form);
+        $mode = "test";
+/*
         //assign hydrator
         $hydrator = new DoctrineHydrator($this->getEntityManager(), '\Application\Model\Entity\User');
         $form->setHydrator($hydrator)->setObject(new User());
@@ -50,21 +52,52 @@ class AuthController extends BaseController {
 
                 $this->FlashMessenger()->setNamespace(\Zend\Mvc\Controller\Plugin\FlashMessenger::NAMESPACE_INFO)
                    ->addMessage($msg);
-                return $this->redirect()->toRoute('');
+                return $this->redirect()->toRoute('home');
             }
         }
 
+*/
 
-        return array(
-            'form' => $form,
-        );
+
+        //change layout
+        $layout = $this->layout();
+        $layout->setTemplate('layout/login');
+
+        $view = new ViewModel(array('form' => $form));
+
+        return $view;
+
     }
 
     public function registerAction() {
         //
     }
 
-    public function loginAction() {
-        //
+    public function authenticateAction() {
+
+        //change layout
+        $layout = $this->layout();
+        $layout->setTemplate('layout/login');
+
+        $view = new ViewModel();
+        //$view->setTerminal(true);
+
+        return $view;
+    }
+
+    public function forgotAction() {
+        $layout = $this->layout();
+        $layout->setTemplate('layout/login');
+
+        $view = new ViewModel();
+        return $view;
+    }
+
+    public function signupAction() {
+        $layout = $this->layout();
+        $layout->setTemplate('layout/login');
+
+        $view = new ViewModel();
+        return $view;
     }
 }

@@ -16,7 +16,7 @@ use Doctrine\ORM\EntityRepository;
 /**
  * Class User
  *
- * @ORM\Table(name="users")
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Application\Model\Entity\Repository\UserRepository")
  * @package Application\Model\Entity
  */
@@ -27,48 +27,43 @@ class User  {
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer", unique=true, nullable=false)
      */
-    protected $id;
+    protected $user_id;
 
 
     /**
-     * @ORM\Column(type="string", length=20, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=255, unique=true, nullable=false)
      */
-    protected $user_name;
+    protected $username;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=128, nullable=false)
      */
     protected $password;
 
     /**
-     * @ORM\Column(type="datetime", nullable=false, columnDefinition="datetime")
+     * @ORM\Column(type="string", nullable=true,  length=255, columnDefinition="varchar(255)")
      */
-    protected $createDate;
+    protected $email;
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=50)
      */
-    protected $last_login;
+    protected $display_name;
 
     /**
-     * @ORM\Column(type="boolean", columnDefinition="boolean default false")
+     * @ORM\Column(type="smallint", columnDefinition="smallint(6)")
      */
-    protected $is_deleted;
-
-    /**
-     * @ORM\Column(type="boolean", columnDefinition="boolean default false")
-     */
-    protected $is_disabled;
+    protected $state;
 
 
     /**
      * @return mixed
      */
-    public function getId() {
-        return $this->id;
+    public function getUserId() {
+        return $this->user_id;
     }
 
-    public function getUserName(){
-        return $this->user_name;
+    public function getUsername(){
+        return $this->username;
     }
 
 }

@@ -13,7 +13,7 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Segment',
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route'    => '[[/page][/:id]]',
                     'constraints' => array(
@@ -29,15 +29,19 @@ return array(
 
             ),
             // login route
-            'login' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+            'auth' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route'    => '/login',
+                    'route'    => '/auth[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ),
                     'defaults' => array(
                         'controller' => 'Application\Controller\Auth',
                         'action'     => 'index',
                     ),
                 ),
+
             ),
             // ajax route
             'ajax' => array(
@@ -55,7 +59,7 @@ return array(
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
             'application' => array(
-                'type'    => 'Literal',
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/application',
                     'defaults' => array(
@@ -80,6 +84,23 @@ return array(
                     ),
                 ),
             ),
+
+            // static pages
+            'static' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/static[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Pages',
+                        'action'     => 'terms',
+                    ),
+                ),
+            ),
+
+
         ),
     ),
     'service_manager' => array(
@@ -109,6 +130,7 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Auth' => 'Application\Controller\AuthController',
             'Application\Controller\Ajax' => 'Application\Controller\AjaxController',
+            'Application\Controller\Pages' => 'Application\Controller\PagesController',
         ),
     ),
     'view_manager' => array(
@@ -238,6 +260,8 @@ return array(
                 'namespace' => 'DoctrineModule',
             ),
         )
-    )
+    ),
+    //
+
 
 );

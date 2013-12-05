@@ -1,23 +1,66 @@
-<?php
-/**
- *
- * User: winston.c
- * Date: 07/11/13
- * Time: 11:48 AM
- * 
- */
+<div class="main-content">
+    <h1>Sign In to your Account</h1>
+    <div class="column-listing">
+        <ul class="columnListing">
+            <li class="leftSide">
+                <form id="login" class="formClass" action="" method="post" enctype="application/x-www-form-urlencoded" name="login" novalidate="novalidate">
+                    <ul>
+                        <li>
+                            <label class="required" for="username"> Username </label>
+                            <input id="username" class="allRounded txt whitebg" type="text" value="" name="username">
+                        </li>
+                        <li>
+                            <label class="required" for="password"> Password </label>
+                            <input id="password" class="allRounded txt whitebg" type="password" value="" name="password">
+                        </li>
+                        <li>
+                            <label class="inputLabel" for="rememberMe">
+                                <input id="rememberMe" class="checkbox" type="checkbox" value="1" name="rememberMe">
+                                Remember me
+                            </label>
+                        </li>
+                    </ul>
+                    <p>
+                        <button id="submit_login" class="orangeBtn allRounded biggerBtn" type="submit">
+                            <span>Sign In</span>
+                        </button>
+                    </p>
+                    <p class="forgotLink">
+                        <a id="linkLoginPageToForgot" href="<?php echo $this->basePath('auth/forgot');?>" title="Forgot your username or password?"> Forgot your username or password? </a>
+                    </p>
+                </form>
+                <div class="signUpOptionBottom">
+                    <span>Don't have an account? </span>
+                    <a onclick="_gaq.push(['pgt._trackEvent', 'Signup', 'SignupClicks', 'SignupLogin']);" href="<?php echo $this->basePath('auth/signup');?>">Sign Up</a>
+                </div>
+            </li>
+            <li class="option-callout">
+                <p>or</p>
+            </li>
+            <li class="rightSide">
+                <h3>Or sign in with Facebook, Twitter or Google:</h3>
+                <div>
+                    <div id="fb-root" class="fb_reset"></div>
+                    <a id="oauth-facebook-btn" class="allRounded smallBtn greyBtn oauth-btn" href="/auth/oauth?provider=facebook">
+                        <span>Sign In with Facebook</span>
+                    </a>
+                    <a id="oauth-twitter-btn" class="allRounded smallBtn greyBtn oauth-btn" href="/auth/oauth?provider=twitter">
+                        <span>Sign In with Twitter</span>
+                    </a>
+                    <a id="oauth-google-btn" class="allRounded smallBtn greyBtn oauth-btn" href="/auth/oauth?provider=google">
+                        <span>Sign In with Google</span>
+                    </a>
+                    <p>
+                        If you don't have an account with us we'll create one for you. By creating an account using your Facebook, Twitter or Google account, you agree to our
+                        <a id="linkLoginPageToTerms" href="<?php echo $this->basePath('/static/terms');?>">Terms of Use</a>
+                        and
+                        <a id="linkLoginPageToPrivacy"  href="<?php echo $this->basePath('/static/privacy-policy');?>">Privacy Policy</a>
+                        .
+                    </p>
+                </div>
 
+            </li>
+        </ul>
+    </div>
 
-$title = 'Authenticate User';
-$this->headTitle($title);
-?>
-    <h1><?php echo $this->escapeHtml($title); ?></h1>
-<?php
-$form = $this->form;
-$form->setAttribute('action', $this->url('', array('action' => 'add')));
-$form->prepare();
-
-echo $this->form()->openTag($form);
-echo $this->formCollection($form);
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
+</div>

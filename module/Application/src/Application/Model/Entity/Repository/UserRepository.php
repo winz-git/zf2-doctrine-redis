@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityRepository;
 class UserRepository extends EntityRepository {
 
     public function getUsers($number = 10) {
-        $dql = "SELECT u FROM Application\Model\Entity\User u ORDER BY u.id DESC";
+        $dql = "SELECT u FROM Application\Model\Entity\User u ORDER BY u.user_id DESC";
 
         $query = $this->getEntityManager()->createQuery($dql);
         $query->setMaxResults($number);

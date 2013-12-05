@@ -42,7 +42,7 @@ return array(
             ),
             array(
                 'label' => 'Login',
-                'route' => 'login',
+                'route' => 'auth',
 //                'pages' => array(
 //                    //
 //                )
