@@ -89,7 +89,11 @@ class AuthController extends BaseController {
         $layout = $this->layout();
         $layout->setTemplate('layout/login');
 
-        $view = new ViewModel();
+        $form = new \Application\Form\ForgotForm($this->getEntityManager());
+        // assign hydrator
+
+
+        $view = new ViewModel(array('form' => $form));
         return $view;
     }
 
@@ -99,5 +103,10 @@ class AuthController extends BaseController {
 
         $view = new ViewModel();
         return $view;
+    }
+
+    public function logoutAction() {
+        //
+        return $this->redirect()->toRoute('auth');
     }
 }

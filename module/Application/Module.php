@@ -33,7 +33,7 @@ class Module
         $platform->registerDoctrineTypeMapping('varbinary', 'string');
         $platform->registerDoctrineTypeMapping('tinyblob', 'text');
 
-        //
+        //set timezone
         date_default_timezone_set('Asia/Hong_Kong');
     }
 

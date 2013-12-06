@@ -28,6 +28,35 @@ return array(
                 ),
 
             ),
+            // Users
+            'users' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/users[/:action[/:id]]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Users',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            // Accounts
+            'accounts' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/accounts[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' =>'Application\Controller\Accounts',
+                        'action' => 'index',
+                    )
+                )
+            ),
             // login route
             'auth' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
@@ -131,6 +160,8 @@ return array(
             'Application\Controller\Auth' => 'Application\Controller\AuthController',
             'Application\Controller\Ajax' => 'Application\Controller\AjaxController',
             'Application\Controller\Pages' => 'Application\Controller\PagesController',
+            'Application\Controller\Users' => 'Application\Controller\UsersController',
+            'Application\Controller\Accounts' => 'Application\Controller\AccountsController',
         ),
     ),
     'view_manager' => array(
@@ -262,6 +293,31 @@ return array(
         )
     ),
     //
+    // Navigation
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Home',
+                'route' => 'home',
+            ),
+            array(
+                'label' => 'Login',
+                'route' => 'auth',
+            ),
+            //
+            array(
+                'label' => 'Users',
+                'route' => 'users',
+                'pages' => array(
+                    array(
+                        'label' => 'Add',
+                        'route' => 'users',
+                        'action' => 'add'
+                    )
+                )
+            )
+        )
+    )
 
 
 );

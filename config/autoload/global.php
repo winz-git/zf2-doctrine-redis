@@ -33,20 +33,4 @@ return array(
         ),
     ),
     //
-    // Navigation
-    'navigation' => array(
-        'default' => array(
-            array(
-                'label' => 'Home',
-                'route' => 'home',
-            ),
-            array(
-                'label' => 'Login',
-                'route' => 'auth',
-//                'pages' => array(
-//                    //
-//                )
-            )
-        )
-    )
 );
