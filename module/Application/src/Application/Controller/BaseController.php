@@ -20,6 +20,8 @@ abstract class BaseController extends AbstractActionController {
 
     protected $entityManager;
 
+    protected $adapter;
+
     protected $documentManager;
 
 
@@ -46,6 +48,23 @@ abstract class BaseController extends AbstractActionController {
             $this->setEntityManager($this->getServiceLocator()->get('doctrine.entitymanager.orm_default'));//Doctrine\ORM\EntityManager
         }
         return $this->entityManager;
+    }
+
+    public function getConfig(){
+        return $this->getServiceLocator()->get('config');
+    }
+
+    public function getViewHelper(){
+        return $this->getServiceLocator()->get('viewHelperManager');
+    }
+
+    public function getAdapter()
+    {
+        if (!$this->adapter) {
+            $sm = $this->getServiceLocator();
+            $this->adapter = $sm->get('Zend\Db\Adapter\Adapter');
+        }
+        return $this->adapter;
     }
 
 

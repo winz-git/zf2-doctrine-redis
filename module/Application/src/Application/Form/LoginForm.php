@@ -23,20 +23,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoginForm extends AbstractForm {
 
-    public function init() {
-
-       $this->add(array(
-           'name' => 'user',
-           'type' => 'Application\Form\UserFieldset'
-
-       ));
-
-        //$this->setInputFilter($this->createInputFilter());
-    }
-
     public function __construct($name = null, $options = array())
     {
         parent::__construct($name, $options);
+        //
+
     }
 
 

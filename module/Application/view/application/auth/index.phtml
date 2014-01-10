@@ -26,12 +26,12 @@
                         </button>
                     </p>
                     <p class="forgotLink">
-                        <a id="linkLoginPageToForgot" href="<?php echo $this->basePath('auth/forgot');?>" title="Forgot your username or password?"> Forgot your username or password? </a>
+                        <a id="linkLoginPageToForgot" href="<?php echo $this->url('auth', array('action'=>'forgot'));?>" title="Forgot your username or password?"> Forgot your username or password? </a>
                     </p>
                 </form>
                 <div class="signUpOptionBottom">
                     <span>Don't have an account? </span>
-                    <a onclick="_gaq.push(['pgt._trackEvent', 'Signup', 'SignupClicks', 'SignupLogin']);" href="<?php echo $this->basePath('auth/signup');?>">Sign Up</a>
+                    <a onclick="_gaq.push(['pgt._trackEvent', 'Signup', 'SignupClicks', 'SignupLogin']);" href="<?php echo $this->url('auth',array('action'=>'signup'));?>">Sign Up</a>
                 </div>
             </li>
             <li class="option-callout">
@@ -41,13 +41,13 @@
                 <h3>Or sign in with Facebook, Twitter or Google:</h3>
                 <div>
                     <div id="fb-root" class="fb_reset"></div>
-                    <a id="oauth-facebook-btn" class="allRounded smallBtn greyBtn oauth-btn" href="/auth/oauth?provider=facebook">
+                    <a id="oauth-facebook-btn" class="allRounded smallBtn greyBtn oauth-btn" href="<?php echo $this->url('auth', array('action'=>'oauth','extra'=>'provider','key'=>'facebook'));?>">
                         <span>Sign In with Facebook</span>
                     </a>
-                    <a id="oauth-twitter-btn" class="allRounded smallBtn greyBtn oauth-btn" href="/auth/oauth?provider=twitter">
+                    <a id="oauth-twitter-btn" class="allRounded smallBtn greyBtn oauth-btn" href="<?php echo $this->url('auth',array('action'=>'oauth','extra'=>'provider', 'key'=>'twitter'));?>">
                         <span>Sign In with Twitter</span>
                     </a>
-                    <a id="oauth-google-btn" class="allRounded smallBtn greyBtn oauth-btn" href="/auth/oauth?provider=google">
+                    <a id="oauth-google-btn" class="allRounded smallBtn greyBtn oauth-btn" href="<?php echo $this->url('auth',array('action'=>'oauth','extra'=>'provider','key'=>'google'));?>">
                         <span>Sign In with Google</span>
                     </a>
                     <p>

@@ -1,8 +1,26 @@
 <div class="main-content">
     <h1>Forgot username or password</h1>
-    <div>
-        <?php $form->prepare(); ?>
-        <?php echo $this->form()->openTag($form); ?>
+    <div class="panel">
+        <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('auth', array('action'=>'forgot')));
+            $form->setAttribute('class', 'form-inline');
+            $form->prepare();
+        ?>
+        <?php echo $this->form()->openTag($form);?>
+        <div class="control-group">
+            <?php echo $this->formlabel($form->get('email')); ?>
+            <?php echo $this->formElementErrors($form->get('email')) ?>
+            <div class="controls">
+                <?php echo $this->formElement($form->get('email')); ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <?php echo $this->formSubmit($form->get('submit'));?>
+            </div>
+        </div>
+        <?php echo $this->form()->closeTag(); ?>
     </div>
 
 </div>

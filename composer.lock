@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "2eb59022ea2a4f3a318d9d7240086e60",
+    "hash": "100e440767393d4d9d2ea7f3a2623764",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -731,12 +731,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "4476ae33250eb7d0641824458a03872c54f1d780"
+                "reference": "8e70387c44195dba5ea12202b1a447b1e34dc7da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/4476ae33250eb7d0641824458a03872c54f1d780",
-                "reference": "4476ae33250eb7d0641824458a03872c54f1d780",
+                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/8e70387c44195dba5ea12202b1a447b1e34dc7da",
+                "reference": "8e70387c44195dba5ea12202b1a447b1e34dc7da",
                 "shasum": ""
             },
             "require": {
@@ -795,7 +795,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2013-12-03 20:23:12"
+            "time": "2013-12-05 21:22:54"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -803,12 +803,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "f65e504e630d2697f9d8673ed92c23ccbbd9aa9b"
+                "reference": "06971f2ac3db9521bd750bbfcadb7263aaa97402"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/f65e504e630d2697f9d8673ed92c23ccbbd9aa9b",
-                "reference": "f65e504e630d2697f9d8673ed92c23ccbbd9aa9b",
+                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/06971f2ac3db9521bd750bbfcadb7263aaa97402",
+                "reference": "06971f2ac3db9521bd750bbfcadb7263aaa97402",
                 "shasum": ""
             },
             "require": {
@@ -873,7 +873,7 @@
                 "odm",
                 "persistence"
             ],
-            "time": "2013-12-02 16:37:03"
+            "time": "2013-12-06 19:02:57"
         },
         {
             "name": "doctrine/orm",
@@ -1051,6 +1051,54 @@
             "time": "2013-12-02 19:55:08"
         },
         {
+            "name": "stripe/stripe-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "ca02fbe5cb15a8c22eba205751a17ceb293c59ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ca02fbe5cb15a8c22eba205751a17ceb293c59ec",
+                "reference": "ca02fbe5cb15a8c22eba205751a17ceb293c59ec",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "vierbergenlars/simpletest": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/Stripe/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "time": "2013-12-02 20:01:33"
+        },
+        {
             "name": "symfony/console",
             "version": "dev-master",
             "target-dir": "Symfony/Component/Console",
@@ -1170,12 +1218,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "fe2a0cb5ebe4daf482a2a25560a6ad8a73244a95"
+                "reference": "d9c984b302f398d7669346db414d959a368b7415"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/fe2a0cb5ebe4daf482a2a25560a6ad8a73244a95",
-                "reference": "fe2a0cb5ebe4daf482a2a25560a6ad8a73244a95",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/d9c984b302f398d7669346db414d959a368b7415",
+                "reference": "d9c984b302f398d7669346db414d959a368b7415",
                 "shasum": ""
             },
             "require": {
@@ -1277,7 +1325,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2013-12-03 20:41:34"
+            "time": "2013-12-06 15:47:38"
         },
         {
             "name": "zf-commons/zfc-base",
@@ -1410,7 +1458,8 @@
         "doctrine/mongodb-odm": 20,
         "doctrine/doctrine-mongo-odm-module": 20,
         "zendframework/zend-developer-tools": 20,
-        "socalnick/scn-social-auth": 20
+        "socalnick/scn-social-auth": 20,
+        "stripe/stripe-php": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -13,20 +13,16 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '[[/page][/:id]]',
-                    'constraints' => array(
-                        'page' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]*',
-                    ),
+                    'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
-                        'id' => 1,
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
                     ),
                 ),
-
+                'may_terminate' => true,
             ),
             // Users
             'users' => array(
@@ -61,14 +57,16 @@ return array(
             'auth' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route'    => '/auth[/:action]',
+                    'route'    => '/auth[/:action[/:extra[/:key]]]',
                     'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'extra' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'key' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
                     'defaults' => array(
                         'controller' => 'Application\Controller\Auth',
                         'action'     => 'index',
-                    ),
+                    )
                 ),
 
             ),
@@ -83,36 +81,7 @@ return array(
                     ),
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
-                'type'    => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/application',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
+
 
             // static pages
             'static' => array(
@@ -163,6 +132,12 @@ return array(
             'Application\Controller\Users' => 'Application\Controller\UsersController',
             'Application\Controller\Accounts' => 'Application\Controller\AccountsController',
         ),
+    ),
+    //
+    'controller_plugins' => array(
+        'invokables' => array(
+            'StripePlugin' => 'Application\Plugin\StripePlugin'
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -298,15 +273,18 @@ return array(
         'default' => array(
             array(
                 'label' => 'Home',
+                'controller'=>'Application\Controller\Index',
                 'route' => 'home',
             ),
             array(
                 'label' => 'Login',
+                'controller'=>'Application\Controller\Auth',
                 'route' => 'auth',
             ),
             //
             array(
                 'label' => 'Users',
+                'controller'=>'Application\Controller\Users',
                 'route' => 'users',
                 'pages' => array(
                     array(

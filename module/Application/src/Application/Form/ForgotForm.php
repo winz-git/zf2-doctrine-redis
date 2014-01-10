@@ -20,19 +20,37 @@ use Zend\Validator\StringLength;
 
 class ForgotForm extends  AbstractForm {
 
-    //
-    public function init() {
-        //
-        $name = new Element\Text('email');
-        $name->setOptions( array('label' => 'Email'));
-        $this->add($name);
 
 
-    }
 
     public function __construct($name = null, $options = array()) {
 
         parent::__construct($name, $options);
+
+        $this->add(array(
+            'name' => 'email',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Email Recovery',
+                'label_attributes' => array(
+                    'class' => 'control-label'
+                ),
+            ),
+        ));
+        //
+        $this->add(array(
+            'name' => 'submit',
+            'attributes' => array(
+                'type'  => 'submit',
+                'value' => 'Go',
+                'class' => 'btn btn-primary',
+                'id' => 'submitbutton',
+            ),
+        ));
+
+        $this->setInputFilter($this->createInputFilter());
 
     }
 
@@ -50,5 +68,6 @@ class ForgotForm extends  AbstractForm {
 
         return $inputFilter;
     }
+
 
 } 

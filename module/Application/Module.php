@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use DoctrineModule\Persistence\ObjectManagerAwareInterface;
@@ -36,6 +37,7 @@ class Module
         //set timezone
         date_default_timezone_set('Asia/Hong_Kong');
     }
+
 
     public function getConfig()
     {

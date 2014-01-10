@@ -86,14 +86,16 @@ class AuthController extends BaseController {
     }
 
     public function forgotAction() {
+
+        $form = new \Application\Form\ForgotForm();
+
+        //change layout
         $layout = $this->layout();
         $layout->setTemplate('layout/login');
 
-        $form = new \Application\Form\ForgotForm($this->getEntityManager());
-        // assign hydrator
-
-
         $view = new ViewModel(array('form' => $form));
+        //$view->setTerminal(true);
+
         return $view;
     }
 
